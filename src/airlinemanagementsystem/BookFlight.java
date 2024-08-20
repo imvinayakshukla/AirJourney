@@ -217,12 +217,12 @@ public class BookFlight extends JFrame implements ActionListener{
             
             try {
                 Conn conn = new Conn();
-
-                String query = "insert into reservation values('PNR-"+random.nextInt(1000000)+"', 'TIC-"+random.nextInt(10000)+"', '"+aadhar+"', '"+name+"', '"+nationality+"', '"+flightname+"', '"+flightcode+"', '"+src+"', '"+des+"', '"+ddate+"')";
+                    String PNR="PNR-"+random.nextInt(1000000);
+                String query = "insert into reservation values('"+PNR+"', 'TIC-"+random.nextInt(10000)+"', '"+aadhar+"', '"+name+"', '"+nationality+"', '"+flightname+"', '"+flightcode+"', '"+src+"', '"+des+"', '"+ddate+"')";
 
                 conn.s.executeUpdate(query);
                 
-                JOptionPane.showMessageDialog(null, "Ticket Booked Successfully");
+                JOptionPane.showMessageDialog(null, "Ticket Booked Successfully with PNR NUMBER:"+PNR);
 
                 setVisible(false);
             } catch (Exception e) {

@@ -14,7 +14,7 @@ public class Home extends JFrame implements ActionListener{
         image.setBounds(0, 0, 1600, 800);
         add(image);
         
-        JLabel heading = new JLabel("AIR INDIA WELCOMES YOU");
+        JLabel heading = new JLabel("AIRJOURNEY WELCOMES YOU");
         heading.setBounds(500, 40, 1000, 40);
         heading.setForeground(Color.BLUE);
         heading.setFont(new Font("Tahoma", Font.PLAIN, 36));
@@ -50,6 +50,7 @@ public class Home extends JFrame implements ActionListener{
         menubar.add(ticket);
         
         JMenuItem boardingPass = new JMenuItem("Boarding Pass");
+        boardingPass.addActionListener(this);
         ticket.add(boardingPass);
         
         
@@ -71,6 +72,8 @@ public class Home extends JFrame implements ActionListener{
         } else if (text.equals("Cancel Ticket")) {
             new Cancel();
         }
+        else if(text.equals("Boarding Pass"))
+            new BoardingPass();
     }
     
     public static void main(String[] args) {
