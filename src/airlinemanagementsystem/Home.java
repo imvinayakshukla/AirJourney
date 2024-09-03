@@ -5,56 +5,68 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Home extends JFrame implements ActionListener{
-    
+
     public Home() {
-        setLayout(null);
+        setTitle("AirJourney - Begin Your Journey");
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
         
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("airlinemanagementsystem/icons/front.jpg"));
-        JLabel image = new JLabel(i1);
-        image.setBounds(0, 0, 1600, 800);
-        add(image);
-        
-        JLabel heading = new JLabel("AIRJOURNEY WELCOMES YOU");
-        heading.setBounds(500, 40, 1000, 40);
+        // Heading label
+        JLabel heading = new JLabel("AirJourney - Begin Your Journey");
         heading.setForeground(Color.BLUE);
-        heading.setFont(new Font("Tahoma", Font.PLAIN, 36));
-        image.add(heading);
+        heading.setFont(new Font("Tahoma", Font.BOLD, 48)); // Increased font size and bold style
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2; // Span the heading across two columns
+        gbc.insets = new Insets(20, 0, 40, 0); // More space below the heading
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(heading, gbc);
         
-        JMenuBar menubar = new JMenuBar();
-        setJMenuBar(menubar);
+        // Create buttons for each option
+        gbc.gridwidth = 1;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        JButton flightDetailsButton = new JButton("Flight Details");
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        add(flightDetailsButton, gbc);
+        flightDetailsButton.addActionListener(this);
         
-        JMenu details = new JMenu("Details");
-        menubar.add(details);
+        JButton customerDetailsButton = new JButton("Add Customer Details");
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        add(customerDetailsButton, gbc);
+        customerDetailsButton.addActionListener(this);
         
-        JMenuItem flightDetails = new JMenuItem("Flight Details");
-        flightDetails.addActionListener(this);
-        details.add(flightDetails);
+        JButton bookFlightButton = new JButton("Book Flight");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        add(bookFlightButton, gbc);
+        bookFlightButton.addActionListener(this);
         
-        JMenuItem customerDetails = new JMenuItem("Add Customer Details");
-        customerDetails.addActionListener(this);
-        details.add(customerDetails);
+        JButton journeyDetailsButton = new JButton("Journey Details");
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        add(journeyDetailsButton, gbc);
+        journeyDetailsButton.addActionListener(this);
         
-        JMenuItem bookFlight = new JMenuItem("Book Flight");
-        bookFlight.addActionListener(this);
-        details.add(bookFlight);
+        JButton cancelTicketButton = new JButton("Cancel Ticket");
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        add(cancelTicketButton, gbc);
+        cancelTicketButton.addActionListener(this);
         
-        JMenuItem journeyDetails = new JMenuItem("Journey Details");
-        journeyDetails.addActionListener(this);
-        details.add(journeyDetails);
+        JButton boardingPassButton = new JButton("Boarding Pass");
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        add(boardingPassButton, gbc);
+        boardingPassButton.addActionListener(this);
         
-        JMenuItem ticketCancellation = new JMenuItem("Cancel Ticket");
-        ticketCancellation.addActionListener(this);
-        details.add(ticketCancellation);
-        
-        JMenu ticket = new JMenu("Ticket");
-        menubar.add(ticket);
-        
-        JMenuItem boardingPass = new JMenuItem("Boarding Pass");
-        boardingPass.addActionListener(this);
-        ticket.add(boardingPass);
-        
-        
+        // Setting JFrame properties
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
     
@@ -71,9 +83,9 @@ public class Home extends JFrame implements ActionListener{
             new JourneyDetails();
         } else if (text.equals("Cancel Ticket")) {
             new Cancel();
-        }
-        else if(text.equals("Boarding Pass"))
+        } else if(text.equals("Boarding Pass")) {
             new BoardingPass();
+        }
     }
     
     public static void main(String[] args) {
